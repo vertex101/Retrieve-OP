@@ -1,0 +1,8 @@
+name: RetrieveOP
+main: zone.norskas.RetrieveOP
+version: 2.2.0
+author: N0RSKA
+commands:
+   retrieveop:
+      description: Main command for RetrieveOP
+      aliases: [rop]

@@ -1,0 +1,60 @@
+#  __  __                                     
+# |  \/  | ___  ___ ___  __ _  __ _  ___  ___ 
+# | |\/| |/ _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# | |  | |  __/\__ \__ \ (_| | (_| |  __/\__ \
+# |_|  |_|\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+
+# PLUGIN CREATED BY Norska#1933 (https://mcm.norskas.zone , https://spigot.norskas.zone)   
+
+No Arguments (Menu):
+- "   &e&lRetrieveOP: &7&o(Options)"
+- "     &f/rop add &8- &6Add users to the list!"
+- "     &f/rop rem &8- &6Rem. users from the list!"
+- "     &f/rop purge &8- &6Remove all users from the list!"
+- "     &f/rop reload &8- &6Reload the plugin!"
+- "     &f/rop version &8- &6View the plugin's version!"
+
+Retrieve Success:
+- "   &e&lRetrieveOP: &a&o(Success)"
+- "     &fYou got your OP back!"
+
+Added User Message:
+- "   &e&lRetrieveOP: &a&o(Success)"
+- "     &fYou have added &a%user &fto the list!"
+
+User Already on List Message:
+- "   &e&lRetrieveOP: &c&o(Error)"
+- "     &c%user &fis already on the list!"
+
+User not on List Message:
+- "   &e&lRetrieveOP: &c&o(Error)"
+- "     &c%user &fis not on the list!"
+
+No Specified Player on Add:
+- "   &e&lRetrieveOP: &c&o(Error)"
+- "     &fPlease use the command correctly!"
+- " "
+- "     &6/rop add [name]"
+
+Removed User Message:
+- "   &e&lRetrieveOP: &a&o(Success)"
+- "     &fYou removed &a%user &ffrom the list!"
+
+No Specified Player on Remove:
+- "   &e&lRetrieveOP: &c&o(Error)"
+- "     &fPlease use the command correctly!"
+- " "
+- "     &6/rop rem [name]"
+
+Reload Message:
+- "   &e&lRetrieveOP: &a&o(Success)"
+- "     &fYou have reloaded the plugin (took &a%ms ms&f)!"
+
+No Permission Message:
+- "   &e&lRetrieveOP: &c&o(Error)"
+- "     &fYou do not have permission!"
+
+Successful Purge:
+- "   &e&lRetrieveOP: &a&o(Success)"
+- "     &fThe list has been cleared!"

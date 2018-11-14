@@ -1,0 +1,73 @@
+#   ____             __ _                       _   _             
+#  / ___|___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __  
+# | |   / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \ 
+# | |__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+#  \____\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+#                         |___/                                   
+   
+# PLUGIN CREATED BY Norska#1933 (https://mcm.norskas.zone , https://spigot.norskas.zone)   
+                                                                                     
+### PLUGIN PERMISSIONS ###
+# - rop.use / GENERAL PERMISSION (REQUIRED TO USE ANY ROP COMMAND)
+# - rop.add / PERMISSION TO ADD USERS TO THE SPECIAL LIST
+# - rop.rem / PERMISSION TO REMOVE USERS FROM THE SPECIAL LSIT
+# - rop.reload / PERMISSION TO USE THE RELOAD COMMAND
+# - rop.version / PERMISSION TO USE THE VERSION COMMAND
+# - rop.purge / PERMISSION TO USE THE PURGE COMMAND
+
+### SUPER ADMINISTRATOR ###
+
+# THIS USER HAS FULL ACCESS OVER THE
+# PLUGIN, THIS USER CANNOT BE REMOVED
+# FROM THE SPECIAL LIST IF ADDED UNLESS
+# THE SUPER ADMIN THEMSELVES REMOVE
+# THEIR NAME FROM THE SPECIAL LIST.
+
+Super Admin:
+- 'N0RSKA'
+
+### UPDATE NOTIFICATIONS ###
+
+# THESE NOTIFICATIONS ARE BEING SENT ONLY
+# TO OPERATORS AND TO USERS WHICH HAVE THE
+# rop.notification PERMISSIONS.
+
+Update Notification: true
+
+### SECRET CODE ###
+
+# HERE YOU CAN SET THE SECRET CODE
+# WHICH YOU USE TO GET OPPED. THIS
+# CODE CAN ONLY BE USED BY USERS
+# WHOSE NAMES ARE ON user-list.yml
+
+Secret Code: 'mysecretcode'
+
+### SECRET CODE COMMANDS ###
+
+# HERE YOU CAN SET THE COMMANDS
+# THAT ARE BEING RAN UPON THE
+# SECRET CODE USAGE.
+# PLACEHOLDERS: %user
+
+Commands:
+- 'op %user'
+
+### SECRET CODE OPTION ###
+
+# TOGGLE WHETHER IT IS REQUIRED TO
+# USE THE SECRET CODE WITHOUT BEING
+# ON THE LIST. IF YOU SET THIS TO
+# FALSE, USERS CAN USE THE SECRET
+# CODE WITHOUT BEING ON THE LIST!
+
+List Requirement: true
+
+### PLUGIN USAGE LOGS ###
+
+# WITH THIS SET TO TRUE THE PLUGIN
+# WILL LOG, LIST ADDITIONS / REMOVALS
+# CODE USAGES, DEBUG & ERROR MESSAGES
+# SUGGESTED TO LEAVE AT TRUE!
+
+Logging: true
