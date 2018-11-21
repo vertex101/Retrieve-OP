@@ -35,7 +35,7 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 		this.registerEvents();
 	  }
 	
-	public String V = "2.2.0";
+	public String V = "2.3";
 	public int JM = 0;
 	
     public Connection connection;
@@ -92,7 +92,7 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 	private void sendStartupMessage() {
 		   Bukkit.getConsoleSender().sendMessage("§7===================================================================");
 		   Bukkit.getConsoleSender().sendMessage(" ");
-		   Bukkit.getConsoleSender().sendMessage("             §eRETRIEVE OP §7// §eVERSION 2.2.0 (1.7x - 1.13x) §7// §eSTATUS: §fRUNNING!§r");
+		   Bukkit.getConsoleSender().sendMessage("             §eRETRIEVE OP §7// §eVERSION 2.3 (1.7x - 1.13x) §7// §eSTATUS: §fRUNNING!§r");
 		   Bukkit.getConsoleSender().sendMessage("                  §aThank you for downloading this plugin.§r");
 		   Bukkit.getConsoleSender().sendMessage("                      §aTo get started use §f/rop §ain-game!§r");
 		   Bukkit.getConsoleSender().sendMessage("    §fPlease report bugs and suggest features @ §dhttps://goo.gl/DeM9Mc§r");
