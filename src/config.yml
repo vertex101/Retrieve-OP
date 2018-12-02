@@ -26,14 +26,6 @@
 Super Admin:
 - 'N0RSKA'
 
-### UPDATE NOTIFICATIONS ###
-
-# THESE NOTIFICATIONS ARE BEING SENT ONLY
-# TO OPERATORS AND TO USERS WHICH HAVE THE
-# rop.notification PERMISSIONS.
-
-Update Notification: true
-
 ### SECRET CODE ###
 
 # HERE YOU CAN SET THE SECRET CODE
@@ -71,3 +63,11 @@ List Requirement: true
 # SUGGESTED TO LEAVE AT TRUE!
 
 Logging: true
+
+### UPDATE NOTIFICATIONS ###
+
+# THESE NOTIFICATIONS ARE BEING SENT ONLY
+# TO OPERATORS AND TO USERS WHICH HAVE THE
+# rop.notification PERMISSIONS.
+
+Update Notification: true

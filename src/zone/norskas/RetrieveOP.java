@@ -14,28 +14,29 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import zone.norskas.commands.PluginCommand;
+import zone.norskas.commands.RetrieveOPCommand;
 import zone.norskas.listeners.MonitorChat;
 import zone.norskas.mysql.Connector;
 import zone.norskas.utils.config.LoadYamls;
 import zone.norskas.utils.config.MkDir;
 import zone.norskas.utils.config.SaveList;
 import zone.norskas.utils.config.SaveMsg;
-import zone.norskas.utils.version.ActualVersionGet;
+import zone.norskas.utils.version.UpdateHandler;
 import zone.norskas.utils.version.UpdateNotification;
-import zone.norskas.utils.version.VersionChecker;
 
 public class RetrieveOP extends JavaPlugin implements Listener {
 	
 	public void onEnable(){		
-		this.generateFiles();
+		generateFiles();
 		//this.startMySQL();
-		this.sendStartupMessage();
-		this.registerCommands();
-		this.registerEvents();
+		sendStartupMessage();
+		registerCommands();
+		registerEvents();
+		
+		handleUpdates.consoleMessage();
 	  }
 	
-	public String V = "2.3";
+	public String V = this.getDescription().getVersion();
 	public int JM = 0;
 	
     public Connection connection;
@@ -58,18 +59,16 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 	public LoadYamls loadYamlulus = new LoadYamls(this);
 	public SaveMsg saveMessages = new SaveMsg(this);
 	public SaveList saveUserlist = new SaveList(this);
-	public VersionChecker versionCheck = new VersionChecker(this);
-	public ActualVersionGet actualversion = new ActualVersionGet(this);
+	public UpdateHandler handleUpdates = new UpdateHandler(this);
 	
 	private void generateFiles() {
 		messages = new File(getDataFolder(), "messages.yml");
 		userlist = new File(getDataFolder(), "user-list.yml");
 		   	mkdir.mkdir();
 		   	loadYamlulus.loadYamlulus();
-		   	versionCheck.versionCheck();
 		   	loadConfig();
 	}
-	
+ 
 	/*private void startMySQL() {
 	    host = this.getConfig().getString("MySQL.Host");
         port = this.getConfig().getInt("MySQL.Port");
@@ -90,14 +89,17 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 	}*/
 	
 	private void sendStartupMessage() {
-		   Bukkit.getConsoleSender().sendMessage("§7===================================================================");
-		   Bukkit.getConsoleSender().sendMessage(" ");
-		   Bukkit.getConsoleSender().sendMessage("             §eRETRIEVE OP §7// §eVERSION 2.3 (1.7x - 1.13x) §7// §eSTATUS: §fRUNNING!§r");
-		   Bukkit.getConsoleSender().sendMessage("                  §aThank you for downloading this plugin.§r");
-		   Bukkit.getConsoleSender().sendMessage("                      §aTo get started use §f/rop §ain-game!§r");
-		   Bukkit.getConsoleSender().sendMessage("    §fPlease report bugs and suggest features @ §dhttps://goo.gl/DeM9Mc§r");
-		   Bukkit.getConsoleSender().sendMessage("   §fIF YOU LIKE THIS PLUGIN PLEASE SUPPORT IT BY RATING 5 STARS ON SPIGOT!");
-		   Bukkit.getConsoleSender().sendMessage("§7====================================================================");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage("§c####################################################################");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage("§cRetrieveOP §7// §aVERSION " + V + " §7(§a1.7x - 1.13x§7)");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage("§e(https://mcm.norskas.zone , https://spigot.norskas.zone)");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage("§c####################################################################");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage(" ");
 	}
 	
 	private void registerEvents() {
@@ -106,7 +108,7 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 	}
 	
 	private void registerCommands() {
-		this.getCommand("rop").setExecutor(new PluginCommand(this));
+		this.getCommand("rop").setExecutor(new RetrieveOPCommand(this));
 	}
 	
 	public void logLogins(String message){

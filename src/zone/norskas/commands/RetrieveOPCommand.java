@@ -17,10 +17,10 @@ import org.bukkit.entity.Player;
 
 import zone.norskas.RetrieveOP;
 
-public class PluginCommand implements CommandExecutor{
+public class RetrieveOPCommand implements CommandExecutor{
 	
 	private RetrieveOP plugin;
-	public PluginCommand(RetrieveOP plugin) {
+	public RetrieveOPCommand(RetrieveOP plugin) {
 	this.plugin = plugin;
 	}
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -121,27 +121,10 @@ public class PluginCommand implements CommandExecutor{
 					}
 					}else if(args[0].equalsIgnoreCase("version")) {
 						
-						plugin.actualversion.actualVersionGet();
-						
 						if(sender.hasPermission("rop.version")||plugin.getConfig().getStringList("Super Admin").contains(sender.getName())) {
-							sender.sendMessage(" ");
-							sender.sendMessage("§e§lRetrieveOP: §aFetching version information. . .");
-						if(plugin.JM == 1) {
-							if(sender instanceof Player) {
-								Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + sender.getName() + " [\"\",{\"text\":\"§e§lRetrieveOP: §a§lUPDATE AVAILABLE §7// §a" + plugin.actualVersionSave + " §7// §8(§a§lCLICK ME§8)\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.spigotmc.org/resources/retrieveop-get-opped-via-your-secret-code-1-7x-1-12x.49750/\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"§aGo to the plugin's resource page!\"}]}}}]");
-								sender.sendMessage(" ");
-							}else {
-								sender.sendMessage("§e§lRetrieveOP: §a§lUPDATE AVAILABLE §7// §a" + plugin.actualVersionSave + " §7//");
-								sender.sendMessage(" ");
-							}
 							
-						}else if(plugin.JM == 2) {
-							sender.sendMessage("§e§lRetrieveOP: §6§lRUNNING LATEST §7// §a" + plugin.V + " §7//");
-							sender.sendMessage(" ");
-						}else {
-							sender.sendMessage("§e§lRetrieveOP: §c§lCANNOT FETCH UPDATES!");
-							sender.sendMessage(" ");
-						}
+							plugin.handleUpdates.commandRequest(sender);
+
 					}else {
 						for(String ma : plugin.messagesC.getStringList("No Permission Message")) {
 					        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ma));
