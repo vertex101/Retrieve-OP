@@ -7,10 +7,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import zone.norskas.RetrieveOP;
 
-public class UpdateNotification implements Listener{
+public class RoPUpdateNotification implements Listener{
 	
 	private RetrieveOP plugin;
-	public UpdateNotification(RetrieveOP plugin) {
+	public RoPUpdateNotification(RetrieveOP plugin) {
 	this.plugin = plugin;
 	}
 	

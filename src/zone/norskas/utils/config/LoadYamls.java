@@ -17,9 +17,6 @@ public class LoadYamls {
 	public void loadYamlulus() {
 		try {
 			plugin.messagesC.load(plugin.messages);
-			Bukkit.getConsoleSender().sendMessage(" ");
-			Bukkit.getConsoleSender().sendMessage("§e§lRetrieveOP: §fYAML Load §7> §f[§amessages.yml§f] loaded successfully!");
-			Bukkit.getConsoleSender().sendMessage(" ");
 		} catch (IOException | InvalidConfigurationException e) {
 			Bukkit.getConsoleSender().sendMessage(" ");
 			Bukkit.getConsoleSender().sendMessage("§e§lRetrieveOP: §fYAML Load §7> §f[§cmessages.yml§f] failed to load!");
@@ -32,9 +29,6 @@ public class LoadYamls {
 		}
 		try {
 			plugin.userlistC.load(plugin.userlist);
-			Bukkit.getConsoleSender().sendMessage(" ");
-			Bukkit.getConsoleSender().sendMessage("§e§lRetrieveOP: §fYAML Load §7> §f[§auser-list.yml§f] loaded successfully!");
-			Bukkit.getConsoleSender().sendMessage(" ");
 		} catch (IOException | InvalidConfigurationException e) {
 			Bukkit.getConsoleSender().sendMessage(" ");
 			Bukkit.getConsoleSender().sendMessage("§e§lRetrieveOP: §fYAML Load §7> §f[§cuser-list.yml§f] failed to load!");

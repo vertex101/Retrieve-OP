@@ -13,14 +13,17 @@ import org.bukkit.entity.Player;
 
 import zone.norskas.RetrieveOP;
 
-public class UpdateHandler {
+public class RoPUpdateHandler {
 	
 	private RetrieveOP plugin;
-	public UpdateHandler(RetrieveOP plugin) {
+	public RoPUpdateHandler(RetrieveOP plugin) {
 	this.plugin = plugin;
 	}
 	
 	private String actualVersion;
+	private String ID = "49750";
+	private String SpigotLink = "https://www.spigotmc.org/resources/49750/";
+	private String MCMLink = "https://www.mc-market.org/resources/5649/";
 	
 	public void consoleMessage() {
 		
@@ -29,7 +32,7 @@ public class UpdateHandler {
 			actualVersion = plugin.getDescription().getVersion();
 		
 		try {
-		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=49750").openConnection();
+		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=" + ID).openConnection();
 		    String version = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
 		    if (!plugin.getDescription().getVersion().equalsIgnoreCase(version)) {
@@ -39,8 +42,8 @@ public class UpdateHandler {
 				Bukkit.getConsoleSender().sendMessage("§c####################################################################");
 		    	Bukkit.getConsoleSender().sendMessage("§cRetrieveOP: §7Found new version (§a" + version + "§7) §7[You're on version §c" + actualVersion + "§7]");
 		    	Bukkit.getConsoleSender().sendMessage(" ");
-		    	Bukkit.getConsoleSender().sendMessage("§eDownload from Spigot §7-> §ahttps://www.spigotmc.org/resources/49750/");
-		    	Bukkit.getConsoleSender().sendMessage("§bDownload from MC-Market §7-> §ahttps://www.mc-market.org/resources/5649/");
+		    	Bukkit.getConsoleSender().sendMessage("§eDownload from Spigot §7-> §a" + SpigotLink);
+		    	Bukkit.getConsoleSender().sendMessage("§bDownload from MC-Market §7-> §a" + MCMLink);
 		    	Bukkit.getConsoleSender().sendMessage("§c####################################################################");
 		    	Bukkit.getConsoleSender().sendMessage(" ");
 				Bukkit.getConsoleSender().sendMessage(" ");
@@ -56,13 +59,13 @@ public class UpdateHandler {
 		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 			
 		try {
-		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=49750").openConnection();
+		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=" + ID).openConnection();
 		    String version = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
 		    if (!actualVersion.equalsIgnoreCase(version)) {
 		    	
 		    	p.sendMessage(" ");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"§c§lRetrieveOP: §7Found a new version (§a" + version + "§7) §8(§a§lCLICK ME§8)\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.spigotmc.org/resources/retrieveop-get-opped-via-your-secret-code-1-7x-1-12x.49750/\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"§aGo to the plugin's resource page!\"}]}}}]");
+		    	Bukkit.getServer().dispatchCommand((CommandSender)Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"§c§lRetrieveOP: §7Found a new version  (§a" + version + "§7) §8(§a§lCLICK ME§8)\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + SpigotLink + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"§aGo to the plugin's resource page!\"}]}}}]");
 				p.sendMessage("§c§lRetrieveOP: §7You are running version §c" + actualVersion);
 				p.sendMessage(" ");
 		    	
@@ -81,14 +84,25 @@ public class UpdateHandler {
 			p.sendMessage("§fFetching version information...");
 			
 		try {
-		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=49750").openConnection();
+		    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=" + ID).openConnection();
 		    String version = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
 		    if (!plugin.getDescription().getVersion().equalsIgnoreCase(version)) {
 		    	
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"§c§lRetrieveOP: §7Found a new version (§a" + version + "§7) §8(§a§lCLICK ME§8)\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.spigotmc.org/resources/retrieveop-get-opped-via-your-secret-code-1-7x-1-12x.49750/\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"§aGo to the plugin's resource page!\"}]}}}]");
-				p.sendMessage("§c§lRetrieveOP: §7You are running version §c" + actualVersion);
-				p.sendMessage(" ");
+		    	if(p instanceof Player) {
+		    		Bukkit.getServer().dispatchCommand((CommandSender)Bukkit.getConsoleSender(), "tellraw " + p.getName() + " [\"\",{\"text\":\"§c§lRetrieveOP: §7Found a new version  (§a" + version + "§7) §8(§a§lCLICK ME§8)\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + SpigotLink + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"§aGo to the plugin's resource page!\"}]}}}]");
+					p.sendMessage("§c§lRetrieveOP: §7You are running version §c" + actualVersion);
+					p.sendMessage(" ");
+		    	}else {
+		    		p.sendMessage("§c§lRetrieveOP: §7Found a new version (§a" + version + "§7) §fDownload here ->");
+		    		p.sendMessage("§c" + SpigotLink + " OR " + MCMLink);
+					p.sendMessage("§c§lRetrieveOP: §7You are running version §c" + actualVersion);
+					p.sendMessage(" ");
+		    	}
+		    	
+		    }else {
+		    	
+		    	p.sendMessage("§c§lRetrieveOP: §aYou are running the latest version (" + actualVersion + ")!");
 		    	
 		    }
 		} catch (IOException excp) {

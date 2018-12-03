@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,14 +16,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import zone.norskas.commands.RetrieveOPCommand;
+import zone.norskas.datacollection.Metrics;
 import zone.norskas.listeners.MonitorChat;
 import zone.norskas.mysql.Connector;
 import zone.norskas.utils.config.LoadYamls;
 import zone.norskas.utils.config.MkDir;
 import zone.norskas.utils.config.SaveList;
 import zone.norskas.utils.config.SaveMsg;
-import zone.norskas.utils.version.UpdateHandler;
-import zone.norskas.utils.version.UpdateNotification;
+import zone.norskas.utils.version.RoPUpdateHandler;
+import zone.norskas.utils.version.RoPUpdateNotification;
 
 public class RetrieveOP extends JavaPlugin implements Listener {
 	
@@ -34,10 +36,15 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 		registerEvents();
 		
 		handleUpdates.consoleMessage();
+		Metrics metrics = new Metrics(this);
 	  }
 	
-	public String V = this.getDescription().getVersion();
-	public int JM = 0;
+    private String V = this.getDescription().getVersion();
+    private String PluginName = this.getDescription().getName();
+    private String ColorCode = "§c";
+    private String start = "1.7x";
+    private String end = "1.13x";
+    private List<String> Author = this.getDescription().getAuthors();
 	
     public Connection connection;
     public String host, database, username, password;
@@ -59,7 +66,7 @@ public class RetrieveOP extends JavaPlugin implements Listener {
 	public LoadYamls loadYamlulus = new LoadYamls(this);
 	public SaveMsg saveMessages = new SaveMsg(this);
 	public SaveList saveUserlist = new SaveList(this);
-	public UpdateHandler handleUpdates = new UpdateHandler(this);
+	public RoPUpdateHandler handleUpdates = new RoPUpdateHandler(this);
 	
 	private void generateFiles() {
 		messages = new File(getDataFolder(), "messages.yml");
@@ -88,23 +95,29 @@ public class RetrieveOP extends JavaPlugin implements Listener {
         }
 	}*/
 	
-	private void sendStartupMessage() {
+    private void sendStartupMessage() {
 		Bukkit.getConsoleSender().sendMessage(" ");
 		Bukkit.getConsoleSender().sendMessage(" ");
-		Bukkit.getConsoleSender().sendMessage("Â§c####################################################################");
+		Bukkit.getConsoleSender().sendMessage(ColorCode + "##########################################");
 		Bukkit.getConsoleSender().sendMessage(" ");
-		Bukkit.getConsoleSender().sendMessage("Â§cRetrieveOP Â§7// Â§aVERSION " + V + " Â§7(Â§a1.7x - 1.13xÂ§7)");
+		Bukkit.getConsoleSender().sendMessage(ColorCode + PluginName + " §7// §aVERSION " + V + ColorCode + " by " + Author);
+		Bukkit.getConsoleSender().sendMessage(ColorCode + "This plugin supports versions from §f" + start + ColorCode + " to §f" + end);
 		Bukkit.getConsoleSender().sendMessage(" ");
-		Bukkit.getConsoleSender().sendMessage("Â§e(https://mcm.norskas.zone , https://spigot.norskas.zone)");
+		Bukkit.getConsoleSender().sendMessage(ColorCode + "If you enjoy this plugin make sure to leave a rating!");
 		Bukkit.getConsoleSender().sendMessage(" ");
-		Bukkit.getConsoleSender().sendMessage("Â§c####################################################################");
+		Bukkit.getConsoleSender().sendMessage("§6You can get in contact with the developer via the following:");
+		Bukkit.getConsoleSender().sendMessage("§eSPIGOT §7-> https://spigot.norskas.zone");
+		Bukkit.getConsoleSender().sendMessage("§bMC-MARKET §7-> https://mcm.norskas.zone");
+		Bukkit.getConsoleSender().sendMessage("§9DISCORD §7-> Norska#1933");
+		Bukkit.getConsoleSender().sendMessage(" ");
+		Bukkit.getConsoleSender().sendMessage(ColorCode + "##########################################");
 		Bukkit.getConsoleSender().sendMessage(" ");
 		Bukkit.getConsoleSender().sendMessage(" ");
 	}
 	
 	private void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new MonitorChat(this), this);
-		Bukkit.getPluginManager().registerEvents(new UpdateNotification(this), this);
+		Bukkit.getPluginManager().registerEvents(new RoPUpdateNotification(this), this);
 	}
 	
 	private void registerCommands() {

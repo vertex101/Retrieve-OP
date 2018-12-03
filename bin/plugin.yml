@@ -1,6 +1,6 @@
 name: RetrieveOP
 main: zone.norskas.RetrieveOP
-version: 2.4
+version: 2.6
 author: N0RSKA
 commands:
    retrieveop:
